@@ -22,7 +22,7 @@
 int main(void)
 {
 	DDRB = (1 << PB0 | 1 << PB1 | 1 << PB2);
-    /* Replace with your application code */
+
     while (1) 
     {
 		PORTB =  (1 << PB0);
