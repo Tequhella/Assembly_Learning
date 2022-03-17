@@ -1,8 +1,8 @@
 ;
 ; Additionneur_2bits.asm
 ;
-; Created: 14/03/2022 22:22:17
-; Author : Tequhella
+; Cr√©√©: 14/03/2022 22:22:17
+; Auteur : Tequhella
 ;
 
 ; ====================================
@@ -18,24 +18,24 @@
 
 start:
     sbr		r16, (1 << DDB0) | (1 << DDB1)
-	out		DDRB, r16						; Port 0 et 1 dÈfinit en tant que sortie
-	sbi		PORTB, PORTB3					; Port 3 dÈfinit en tant qu'entrÈe
+	out		DDRB, r16						; Port 0 et 1 d√©finit en tant que sortie
+	sbi		PORTB, PORTB3					; Port 3 d√©finit en tant qu'entr√©e
 
 boucle:
-	clr		r16					; Registre 16 vidÈ
-	clr		r18					; Registre 18 vidÈ
+	clr		r16					; Registre 16 vid√©
+	clr		r18					; Registre 18 vid√©
 	sbr		r17, (1 << PORTB3)
-	in		r18, PINB			; Registre 18 prend la valeur dÈfinit de PINB
+	in		r18, PINB			; Registre 18 prend la valeur d√©finit de PINB
 	sbr		r16, (1 << PB3)
 	and		r16, r18			; Comparaison entre les registres 16 et 18
-	brbs	SREG_Z, increm		; Si Ègal, alors appeler ‡ la sous routine increm
-	cpi		r17, 0x0B			; Comparaison du registre 19 aprËs incrÈmentation, avec la valeur 0x03
-	breq	renitR19			; Si Ègal, alors appeler ‡ la sous routine renitR19
-	out		PORTB, r17			; LED ON selon le rÈsultat de l'incrÈmentation
+	brbs	SREG_Z, increm		; Si √©gal, alors appeler √† la sous routine increm
+	cpi		r17, 0x0B			; Comparaison du registre 19 apr√®s incr√©mentation, avec la valeur 0x03
+	breq	renitR19			; Si √©gal, alors appeler √† la sous routine renitR19
+	out		PORTB, r17			; LED ON selon le r√©sultat de l'incr√©mentation
 	rcall	boucle
 
 increm:
-	inc		r17			; IncrÈmentation du registre 19
+	inc		r17			; Incr√©mentation du registre 19
 	rcall	tempo		; Appel de la sous routine delay
 	rcall	boucle
 
@@ -48,8 +48,8 @@ tempo:
 tempo2:
 	ldi		r21, 0xff
 tempo3:
-	dec		r21				; DÈcrÈmentation du registre 21
-	brbc	SREG_Z, tempo3	; Si le registre 21 n'est pas ‡ 0x00, alors retour ‡ la sous routine tempo3
-	dec		r20				; DÈcrÈmentation du registre 20
-	brbc	SREG_Z,	tempo2	; Si le registre 20 n'est pas ‡ 0x00, alors retour ‡ la sous routine tempo2
+	dec		r21				; D√©cr√©mentation du registre 21
+	brbc	SREG_Z, tempo3	; Si le registre 21 n'est pas √† 0x00, alors retour √† la sous routine tempo3
+	dec		r20				; D√©cr√©mentation du registre 20
+	brbc	SREG_Z,	tempo2	; Si le registre 20 n'est pas √† 0x00, alors retour √† la sous routine tempo2
 	ret
