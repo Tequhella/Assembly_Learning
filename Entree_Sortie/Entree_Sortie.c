@@ -11,7 +11,6 @@
 int main(void)
 {
 	DDRB  |= (1 << DDB0);
-	DDRB  &= ~(1 << DDB1);
 	PORTB |= (1 << PB1);
     
     while (1)
