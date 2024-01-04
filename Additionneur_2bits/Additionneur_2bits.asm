@@ -30,17 +30,17 @@ boucle:
 	and		r16, r18			; Comparaison entre les registres 16 et 18
 	brbs	SREG_Z, increm		; Si égal, alors appeler à la sous routine increm
 	cpi		r17, 0x0B			; Comparaison du registre 19 après incrémentation, avec la valeur 0x03
-	breq	renitR19			; Si égal, alors appeler à la sous routine renitR19
+	breq	renitR17			; Si égal, alors appeler à la sous routine renitR17
 	out		PORTB, r17			; LED ON selon le résultat de l'incrémentation
 	rcall	boucle
 
 increm:
-	inc		r17			; Incrémentation du registre 19
+	inc		r17			; Incrémentation du registre 17
 	rcall	tempo		; Appel de la sous routine delay
 	rcall	boucle
 
-renitR19:
-	subi	r17, 0x03	; Soustraction du registre 19 avec la valeur 0x03
+renitR17:
+	subi	r17, 0x03	; Soustraction du registre 17 avec la valeur 0x03
 	rcall	boucle
 
 tempo:
